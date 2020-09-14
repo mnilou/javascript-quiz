@@ -1,118 +1,100 @@
 // Assigning HTML elements with variables for coding
 var quizMain = document.getElementById("quiz");
 var questionsEl = document.getElementById("questions");
-var startQuizDiv = document.getElementById("startPage");
+var startQuizDiv = document.getElementById("start-page");
 var startQuizButton = document.getElementById("generateBtn");
 var buttonA = document.getElementById("a");
 var buttonB = document.getElementById("b");
 var buttonC = document.getElementById("c");
 var buttonD = document.getElementById("d");
 var timerEl = document.getElementById("timer");
-var highScoreCon = document.getElementById("highscoreContainer");
-var highScoreDiv = document.getElementById("high-scorePage");
+var resultsEl = document.getElementById("result");
+var highScoreCon = document.getElementById("highScoreContainer");
+var highScoreDiv = document.getElementById("highScorePage");
 var highScoreInitials = document.getElementById("initials");
 var highScoreDisplayName = document.getElementById("highscore-initials");
 var endGameButtons = document.getElementById("endGameButtons");
 var submitScoreButton = document.getElementById("submitScore");
 var highScoreDisplayScore = document.getElementById("highscore-score");
-var resultsEl = document.getElementById("result");
 var finalScoreEl = document.getElementById("finalScore");
 var gameOverDiv = document.getElementById("gameOver");
-// GIVEN I am taking a code quiz
-var quizQuestions = [
-    {
-        question: "In the DOM, what does the 'click' event do?",
-        answers: {
-          a: "The event occurs when the user clicks on an element.",
-          b: "The event occurs when the browser can start playing the media.",
-          c: "The event occurs when the user double-clicks on an element.",
-          d: "The event occurs when the user is pressing a key.",
-        },
-        correctAnswer: "a",
-      },
-      {
-        question: "What does 'indexOf()' mean?",
-        answers: {
-          a:
-            "Searches the array for an element, starting at the end, and returns its position.",
-          b: "Searches the array for an element and returns it position.",
-          c: "Sorts the elements of an array.",
-          d: "Returns the primitive value of an array.",
-        },
-        correctAnswer: "b",
-      },
-      {
-        question: "What is a fixed value called?",
-        answers: {
-          a: "Variable",
-          b: "Object",
-          c: "Literal",
-          d: "String",
-        },
-        correctAnswer: "c",
-      },
-      {
-        question: "What method is used for debugging code?",
-        answers: {
-          a: "document.getElementById().innerHTML",
-          b: "function ()",
-          c: "console.log",
-          d: "variables",
-        },
-        correctAnswer: "c",
-      },
-      {
-        question: "What does the 'parseInt' function do?",
-        answers: {
-          a: "parses the object argument to a number",
-          b: "parses an argument",
-          c: "parses a string and returns a floating point number",
-          d: "parses a string and returns an integer",
-        },
-        correctAnswer: "d",
-      },
-      {
-        question: "What is a 'Boolean'?",
-        answers: {
-          a: "a block of code designed to perform a particular task",
-          b:
-            "statement used to perform different actions based on different conditions",
-          c: "function used to store multiple values in a single variable",
-          d: "function to find out if an expression is true or false",
-        },
-        correctAnswer: "d",
-      },
-      {
-        question: "What is a 'For Loop'?",
-        answers: {
-          a: "loops through a block of code a number of times",
-          b: "loops through the properties of an object",
-          c: "loops through the values of an iterable object",
-          d: "loops through a clock of code while a specified condition is true",
-        },
-        correctAnswer: "a",
-      },
-]
 
- 
-// THEN a timer starts and I am presented with a question
-// WHEN I answer a question
-// THEN I am presented with another question
-// WHEN I answer a question incorrectly
-// THEN time is subtracted from the clock
-// WHEN all questions are answered or the timer reaches 0
-// THEN the game is over
-// WHEN the game is over
-// THEN I can save my initials and score
-// Other global variables
-var finalQuestionIndex = quizQuestions.length;
-var currentQuestionIndex = 0;
-var timeLeft = 100;
-var timerInterval;
-var score = 0;
-var correct;
+var questions = [
+  {
+    question: "In the DOM, what does the 'click' event do?",
+    answers: {
+      a: "The event occurs when the user clicks on an element.",
+      b: "The event occurs when the browser can start playing the media.",
+      c: "The event occurs when the user double-clicks on an element.",
+      d: "The event occurs when the user is pressing a key.",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question: "What does 'indexOf()' mean?",
+    answers: {
+      a: "Searches the array for an element, starting at the end, and returns its position.",
+      b: "Searches the array for an element and returns it position.",
+      c: "Sorts the elements of an array.",
+      d: "Returns the primitive value of an array.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "What is a fixed value called?",
+    answers: {
+      a: "Variable",
+      b: "Object",
+      c: "Literal",
+      d: "String",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "What method is used for debugging code?",
+    answers: {
+      a: "document.getElementById().innerHTML",
+      b: "function ()",
+      c: "console.log",
+      d: "variables",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "What does the 'parseInt' function do?",
+    answers: {
+      a: "parses the object argument to a number",
+      b: "parses an argument",
+      c: "parses a string and returns a floating point number",
+      d: "parses a string and returns an integer",
+    },
+    correctAnswer: "d",
+  },
+  {
+    question: "What is a 'Boolean'?",
+    answers: {
+      a: "a block of code designed to perform a particular task",
+      b:
+        "statement used to perform different actions based on different conditions",
+      c: "function used to store multiple values in a single variable",
+      d: "function to find out if an expression is true or false",
+    },
+    correctAnswer: "d",
+  },
+  {
+    question: "What is a 'For Loop'?",
+    answers: {
+      a: "loops through a block of code a number of times",
+      b: "loops through the properties of an object",
+      c: "loops through the values of an iterable object",
+      d: "loops through a clock of code while a specified condition is true",
+    },
+    correctAnswer: "a",
+  },
+];
 
 // This function cycles through the object array containing the quiz questions to generate the questions and answers.
+var currentQuestionIndex = 0;
 function generateQuizQuestion() {
   gameOverDiv.style.display = "none";
   if (currentQuestionIndex === finalQuestionIndex) {
@@ -133,6 +115,8 @@ function startQuiz() {
   generateQuizQuestion();
 
   //Timer
+  var timeLeft = 60;
+  var timerInterval;
   timerInterval = setInterval(function () {
     timeLeft--;
     timerEl.textContent = "Time left: " + timeLeft;
@@ -144,7 +128,10 @@ function startQuiz() {
   }, 1000);
   quizMain.style.display = "block";
 }
-// This function is the end page screen that displays your score after either completeing the quiz or upon timer run out
+// This function is the end page screen that displays your score after either completing the quiz or upon timer run out
+var score = 0;
+var correct;
+
 function showScore() {
   quizMain.style.display = "none";
   gameOverDiv.style.display = "flex";
@@ -154,7 +141,7 @@ function showScore() {
     "You got " + score + " out of " + quizQuestions.length + " correct!";
 }
 
-// On click of the submit button, we run the function highscore that saves and stringifies the array of high scores already saved in local stoage
+// On click of the submit button, we run the function highscore that saves and stringifies the array of high scores already saved in local storage
 // as well as pushing the new user name and score into the array we are saving in local storage. Then it runs the function to show high scores.
 submitScoreButton.addEventListener("click", function highscore() {
   if (highScoreInitials.value === "") {
@@ -224,6 +211,8 @@ function replayQuiz() {
 }
 
 // This function checks the response to each answer
+var finalQuestionIndex = quizQuestions.length;
+
 function checkAnswer(answer) {
   correct = quizQuestions[currentQuestionIndex].correctAnswer;
 
