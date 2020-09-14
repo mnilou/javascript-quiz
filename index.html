@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Quiz</title>
+    <title>Javascript Quiz</title>
     <link href="https://fonts.googleapis.com/css2?family=Kufam&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -12,7 +12,7 @@
 </head>
 <body>
         <header>
-          <h1 style="color: black; font-size: 48px; text-align: center;">Java Script Fundamentals Quiz</h1>
+          <h1 style="color: black; font-size: 48px; text-align: center;">Javascript Fundamentals Quiz</h1>
           <img
         id="icon"
         src="Javascript_badge.svg.png"
@@ -20,7 +20,7 @@
       />
         </header>
         <div class="welcome-container">
-            <div id="start-page">
+            <div id="startPage">
               <h2>Welcome to the Javascript Quiz!</h2>
               <h2>Click "start quiz" to begin quiz on JS fundamentals</h2>
               <button id="generateBtn" class="btn">Start Code Quiz</button>
@@ -38,7 +38,49 @@
               </div>
             </div>
         </div>
-     
-    <script src="quiz.js"></script>
-</body>
+        <div id="gameOver">
+            <div id="finalScore"></div>
+            <input
+              type="text"
+              size="40"
+              placeholder="Enter you initials for high score"
+              name="initials"
+              id="initials"
+            />
+            <button id="submitScore">Submit Score</button>
+          </div>
+          <div id="highScoreContainer">
+            <div id="high-scorePage">
+              <div id="highscore-header">
+                <h3>User Initials</h3>
+                <h3>Score</h3>
+              </div>
+              <div id="highscore-initials"></div>
+              <div id="highscore-score"></div>
+            </div>
+            <div id="endGameButtons">
+              <button id="playAgain" onclick="replayQuiz()">Play Again</button>
+              <button id="clearHighscore" onclick="clearScore()">
+                Clear Highscores
+              </button>
+            </div>
+          </div>
+        </div>
+        <script src="quiz.js"></script>
+        <script
+          src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+          integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+          crossorigin="anonymous"
+        ></script>
+        <script
+          src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+          integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+          crossorigin="anonymous"
+        ></script>
+        <script
+          src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+          integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+          crossorigin="anonymous"
+        ></script>
+   </body>
 </html>
