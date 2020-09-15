@@ -19,8 +19,10 @@ WHEN the game is over
 THEN I can save my initials and score
 
 ## App Screenshot
+<img src="Working Docs\screenshot.jpg">
 
 ## Live Site Demo
+https://mnilou.github.io/javascript-quiz/
 
 ## Installation
 To install the project you will need internet connection and either a desktop, laptop, or mobile device.
