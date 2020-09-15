@@ -19,7 +19,6 @@ WHEN the game is over
 THEN I can save my initials and score
 
 ## App Screenshot
-<img src="Working Docs\screenshot.jpg">
 
 ## Live Site Demo
 
