@@ -1,10 +1,16 @@
-// Variables for different parts of the quiz
-var quizContainer = document.querySelector("#quiz");
-var gameOverDiv = document.querySelector("#gameOver");
-var submitButton = document.querySelector("#generateBtn");
-var timerDiv = document.querySelector(".timer");
-var resultsDiv = document.querySelector(".results");
-var highScoreDiv = document.querySelector("#highScore");
+// Variables for the different components of the app
+var homeDiv = document.getElementById("homePage");
+var startButton = document.getElementById("generateBtn");
+var quizContainer = document.getElementById("quiz");
+var questionsDiv = document.getElementById("questions");
+var timerDiv = document.getElementById("timer");
+var buttonA = document.getElementById("a");
+var buttonB = document.getElementById("b");
+var buttonC = document.getElementById("c");
+var buttonD = document.getElementById("d");
+var gameOverDiv = document.getElementById("gameOver");
+var resultsDiv = document.getElementById("results");
+var highScoreDiv = document.getElementById("highScore");
 
 // Quiz questions in object array with questions and answers
 var quizQuestions = [
@@ -81,16 +87,26 @@ var quizQuestions = [
     correctAnswer: "a",
   },
 ];
-
+// variables assigned for timer, quiz loop, and end of game
 var finalQuestionIndex = quizQuestions.length;
 var currentQuestionIndex = 0;
 var timeLeft = 100;
 var timerInterval;
 var score = 0;
 var correct;
+//
+function homeDiv() {
+  gameOverDiv.style.display = "hidden";
+  highScoreDiv.style.display = "hidden";
+  quizContainer.style.display = "hidden";
+  timerDiv.style.display = "hidden";
+}
+function generateQuiz() {
+  gameOverDiv.style.display = "hidden";
+  highScoreDiv.style.display = "hidden";
+  quizContainer.style.display = "block";
+  timerDiv.style.display = "block";
 
-function generateQuestions() {
-  gameOverDiv.style.display = "none";
   if (currentQuestionIndex === finalQuestionIndex) {
     return showScore();
   }
@@ -100,8 +116,4 @@ function generateQuestions() {
   buttonB.innerHTML = currentQuestion.choiceB;
   buttonC.innerHTML = currentQuestion.choiceC;
   buttonD.innerHTML = currentQuestion.choiceD;
- }
-submitButton.addEventListener("click", buildQuiz);
-function showResults() {
-  
 }
