@@ -3,10 +3,7 @@ var quizMain = document.getElementById("quiz");
 var questionsEl = document.getElementById("questions");
 var startQuizDiv = document.getElementById("startpage");
 var startQuizButton = document.getElementById("startbtn");
-var buttonA = document.getElementById("a");
-var buttonB = document.getElementById("b");
-var buttonC = document.getElementById("c");
-var buttonD = document.getElementById("d");
+var buttonBox = document.getElementById("button-box");
 var timerEl = document.getElementById("timer");
 var highScoreCon = document.getElementById("highscoreContainer");
 var highScoreDiv = document.getElementById("high-scorePage");
@@ -23,75 +20,68 @@ var gameOverDiv = document.getElementById("gameover");
 var quizQuestions = [
   {
     question: "In the DOM, what does the 'click' event do?",
-    answers: {
-      a: "The event occurs when the user clicks on an element.",
-      b: "The event occurs when the browser can start playing the media.",
-      c: "The event occurs when the user double-clicks on an element.",
-      d: "The event occurs when the user is pressing a key.",
-    },
-    correctAnswer: "a",
+    answers: [
+      "The event occurs when the user clicks on an element.",
+      "The event occurs when the browser can start playing the media.",
+      "The event occurs when the user double-clicks on an element.",
+      "The event occurs when the user is pressing a key.",
+    ],
+    correctAnswer: "The event occurs when the user clicks on an element.",
   },
   {
     question: "What does 'indexOf()' mean?",
-    answers: {
-      a:
-        "Searches the array for an element, starting at the end, and returns its position.",
-      b: "Searches the array for an element and returns it position.",
-      c: "Sorts the elements of an array.",
-      d: "Returns the primitive value of an array.",
-    },
-    correctAnswer: "b",
+    answers: [
+      "Searches the array for an element, starting at the end, and returns its position.",
+      "Searches the array for an element and returns it position.",
+      "Sorts the elements of an array.",
+      "Returns the primitive value of an array.",
+    ],
+    correctAnswer: "Searches the array for an element and returns it position.",
   },
   {
     question: "What is a fixed value called?",
-    answers: {
-      a: "Variable",
-      b: "Object",
-      c: "Literal",
-      d: "String",
-    },
-    correctAnswer: "c",
+    answers: ["Variable", "Object", "Literal", "String"],
+    correctAnswer: "Literal",
   },
   {
     question: "What method is used for debugging code?",
-    answers: {
-      a: "document.getElementById().innerHTML",
-      b: "function ()",
-      c: "console.log",
-      d: "variables",
-    },
-    correctAnswer: "c",
+    answers: [
+      "document.getElementById().innerHTML",
+      "function ()",
+      "console.log",
+      "variables",
+    ],
+    correctAnswer: "console.log",
   },
   {
     question: "What does the 'parseInt' function do?",
-    answers: {
-      a: "parses the object argument to a number",
-      b: "parses an argument",
-      c: "parses a string and returns a floating point number",
-      d: "parses a string and returns an integer",
-    },
-    correctAnswer: "d",
+    answers: [
+      "parses the object argument to a number",
+      "parses an argument",
+      "parses a string and returns a floating point number",
+      "parses a string and returns an integer",
+    ],
+    correctAnswer: "parses a string and returns an integer",
   },
   {
     question: "What is a 'Boolean'?",
-    answers: {
-      a: "a block of code designed to perform a particular task",
-      b:
-        "statement used to perform different actions based on different conditions",
-      c: "function used to store multiple values in a single variable",
-      d: "function to find out if an expression is true or false",
-    },
-    correctAnswer: "d",
+    answers: [
+      "a block of code designed to perform a particular task",
+      "statement used to perform different actions based on different conditions",
+      "function used to store multiple values in a single variable",
+      "function to find out if an expression is true or false",
+    ],
+    correctAnswer: "function to find out if an expression is true or false",
   },
   {
     question: "What is a 'For Loop'?",
-    answers: {
-      a: "loops through a block of code a number of times",
-      b: "loops through the properties of an object",
-      c: "loops through the values of an iterable object",
-      d: "loops through a clock of code while a specified condition is true",
-    },
-    correctAnswer: "a",
+    answers: [
+      "loops through a block of code a number of times",
+      "loops through the properties of an object",
+      "loops through the values of an iterable object",
+      "loops through a clock of code while a specified condition is true",
+    ],
+    correctAnswer: "loops through a block of code a number of times",
   },
 ];
 // quiz and timer variables
@@ -111,13 +101,36 @@ function generateQuizQuestion() {
   }
   var currentQuestion = quizQuestions[currentQuestionIndex];
   questionsEl.innerHTML = "<p>" + currentQuestion.question + "</p>";
-  buttonA.innerHTML = currentQuestion.choiceA;
-  buttonB.innerHTML = currentQuestion.choiceB;
-  buttonC.innerHTML = currentQuestion.choiceC;
-  buttonD.innerHTML = currentQuestion.choiceD;
+
+  buttonBox.innerHTML = "";
+  currentQuestion.answers.forEach(function (answer) {
+    var button = document.createElement("button");
+    button.setAttribute("class", "answer");
+    button.setAttribute("value", answer);
+    button.textContent = answer;
+    button.onclick = questionClick;
+    buttonBox.appendChild(button);
+  });
   console.log(currentQuestion);
 }
-
+function questionClick() {
+  console.log(this.value);
+  if (this.value === quizQuestions[currentQuestionIndex].correctAnswer) {
+    score++;
+    alert("Correct");
+    currentQuestionIndex++;
+    generateQuizQuestion();
+    //display in the results div that the this.value is correct.
+  } else if (
+    this.value !== quizQuestions[currentQuestionIndex].correctAnswer) {
+    alert("Incorrect");
+    currentQuestionIndex++;
+    generateQuizQuestion();
+    //display in the results div that the this.value is wrong.
+  } else {
+    showScore();
+  }
+}
 // Start Quiz function starts the TimeRanges, hides the start button, and displays the first quiz question.
 function startQuiz() {
   gameOverDiv.style.display = "none";
@@ -213,24 +226,6 @@ function replayQuiz() {
 // This function checks the response to each answer
 function checkAnswer(answer) {
   correct = quizQuestions[currentQuestionIndex].correctAnswer;
-
-  if (answer === correct && currentQuestionIndex !== finalQuestionIndex) {
-    score++;
-    alert("Correct");
-    currentQuestionIndex++;
-    generateQuizQuestion();
-    //display in the results div that the answer is correct.
-  } else if (
-    answer !== correct &&
-    currentQuestionIndex !== finalQuestionIndex
-  ) {
-    alert("Incorrect");
-    currentQuestionIndex++;
-    generateQuizQuestion();
-    //display in the results div that the answer is wrong.
-  } else {
-    showScore();
-  }
 }
 
 // This button starts the quiz!
