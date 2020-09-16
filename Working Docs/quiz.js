@@ -100,7 +100,8 @@ var currentQuestionIndex = 0;
 var timeLeft = 60;
 var timerInterval;
 var score = 0;
-var correct;
+
+// var correctAnswer = ;
 
 // This function cycles through the object array containing the quiz questions to generate the questions and answers
 function generateQuizQuestion() {
