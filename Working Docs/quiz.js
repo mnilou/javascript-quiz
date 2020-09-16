@@ -89,7 +89,8 @@ var finalQuestionIndex = quizQuestions.length;
 var currentQuestionIndex = 0;
 var timeLeft = 60;
 var timerInterval;
-var score = 0;
+var score;
+var numCorrect = 0;
 
 // var correctAnswer = ;
 
@@ -115,21 +116,18 @@ function generateQuizQuestion() {
 }
 function questionClick() {
   console.log(this.value);
-  if (this.value === quizQuestions[currentQuestionIndex].correctAnswer) {
-    score++;
-    alert("Correct");
-    currentQuestionIndex++;
-    generateQuizQuestion();
+  if (this.value !== quizQuestions[currentQuestionIndex].correctAnswer) {
+    timeLeft -= 10;
+  
     //display in the results div that the this.value is correct.
-  } else if (
-    this.value !== quizQuestions[currentQuestionIndex].correctAnswer) {
-    alert("Incorrect");
-    currentQuestionIndex++;
-    generateQuizQuestion();
-    //display in the results div that the this.value is wrong.
   } else {
+    numCorrect++;  
+  }
+  currentQuestionIndex++;
+  if (currentQuestionIndex === quizQuestions.length) {
     showScore();
   }
+  generateQuizQuestion();
 }
 // Start Quiz function starts the TimeRanges, hides the start button, and displays the first quiz question.
 function startQuiz() {
@@ -153,10 +151,11 @@ function startQuiz() {
 function showScore() {
   quizMain.style.display = "none";
   gameOverDiv.style.display = "flex";
+  score = timeLeft;
   clearInterval(timerInterval);
   highScoreInitials.value = "";
   finalScoreEl.innerHTML =
-    "You got " + score + " out of " + quizQuestions.length + " correct!";
+    "You got " + numCorrect + " out of " + quizQuestions.length + " correct!";
 }
 // On click of the submit button, we run the function highscore that saves and stringifies the array of high scores already saved in local storage
 // as well as pushing the new user name and score into the array we are saving in local storage. Then it runs the function to show high scores.
