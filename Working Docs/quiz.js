@@ -115,6 +115,7 @@ function generateQuizQuestion() {
   buttonB.innerHTML = currentQuestion.choiceB;
   buttonC.innerHTML = currentQuestion.choiceC;
   buttonD.innerHTML = currentQuestion.choiceD;
+  console.log(currentQuestion);
 }
 
 // Start Quiz function starts the TimeRanges, hides the start button, and displays the first quiz question.
@@ -180,6 +181,7 @@ function generateHighscores() {
     newScoreSpan.textContent = highscores[i].score;
     highScoreDisplayName.appendChild(newNameSpan);
     highScoreDisplayScore.appendChild(newScoreSpan);
+    console.log(highscores);
   }
 }
 // This function displays the high scores page while hiding all of the other pages from
