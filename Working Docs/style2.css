@@ -6,7 +6,7 @@
     height: 10%;
     float: left;
     margin-bottom: -40em;
-    margin-left: 2em;
+    margin-left: 8em;
     margin-top: -5em;
   }
   li {
@@ -25,7 +25,10 @@
   }
   h2 {
     font-family: sans-serif;
+    text-align: center;
     margin-top: -0.5rem;
+    margin-left: 1em;
+
   }
   input {
     text-align: center;
@@ -40,6 +43,7 @@
     max-width: 80rem;
     margin: 0 auto;
     margin-top: -10%;
+    margin-left: -3em;
   }
   
   button {

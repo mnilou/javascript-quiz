@@ -44,6 +44,11 @@ https://www.sitepoint.com/simple-javascript-quiz/;
 
 I referenced these tutorials:
 https://www.youtube.com/watch?v=Kp3HGwlXwCk; 
+https://www.youtube.com/watch?v=R6euByfGaN4;
+https://www.youtube.com/watch?v=9_9-NeU2L_U;
+https://www.youtube.com/watch?v=6BLReDBUZRk;
+https://www.youtube.com/watch?v=Nh4wxhzePIs; 
+
 
 I also received a lot of help from my tutor, Corey Yates! 
 

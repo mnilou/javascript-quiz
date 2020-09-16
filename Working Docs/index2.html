@@ -3,37 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title style="color: #9597b1;">Code Quiz</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kufam&display=swap" rel="stylesheet">
+    <title style="color: #9597b1">Code Quiz</title>
     <link rel="stylesheet" href="style2.css" />
   </head>
   <body>
-      <br>
-      <br>
+    <br />
+    <br />
     <div>
       <h1 style="text-align: center">Javascript Fundamentals Quiz</h1>
-      <img
-        id="icon"
-        src="Javascript_badge.svg.png"
-        alt="javascript icon"
-      />
+      <img id="icon" src="Javascript_badge.svg.png" alt="javascript icon" />
     </div>
+    <!-- Home page with only text and the start button -->
     <div class="container">
       <div id="startpage">
         <h2>Welcome to a Code Quiz!</h2>
-        <p>Click "start" to play the JavaScript quiz game. You have 60 seconds to
-            complete the quiz. However, every question you get wrong will deduct 5
-            seconds from the time left. The game ends when you finish answering
-            the questions or when the time is up, whichever happens first. Your
-            score will be the time remaining. You can enter your initials at the
-            end of the game and play with friends to see who will get the highest
-            score.</p>
+        <p>
+          Click "start" to play the JavaScript quiz game. You have 60 seconds to
+          complete the quiz. However, every question you get wrong will deduct 5
+          seconds from the time left. The game ends when you finish answering
+          the questions or when the time is up, whichever happens first. Your
+          score will be the time remaining. You can enter your initials at the
+          end of the game and play with friends to see who will get the highest
+          score.
+        </p>
         <button id="startbtn">Start</button>
-        <!-- <button id="startPageHighscore" onclick="showHighscore()">
-          High Scores
-        </button> -->
       </div>
-
+<!-- The game starts once the start button is clicked which starts the timer and the questions -->
       <div id="quiz">
         <div id="timer">Time left:</div>
         <div id="questions"><p>Questions Placeholder</p></div>
@@ -43,6 +38,7 @@
         <button id="d" onclick="checkAnswer('d')">D</button>
         <div id="result"></div>
       </div>
+      <!-- The game is over once the timer is done or all the questions are answered. User inputs initials. -->
       <div id="gameover">
         <div id="finalScore"></div>
         <input
@@ -54,6 +50,7 @@
         />
         <button id="submitScore">Submit Score</button>
       </div>
+      <!-- High score is published with initials with info stored in local storage -->
       <div id="highscoreContainer">
         <div id="high-scorePage">
           <div id="highscore-header">
@@ -63,6 +60,7 @@
           <div id="highscore-initials"></div>
           <div id="highscore-score"></div>
         </div>
+        <!-- End of game or restart options and the ability to clear highscores -->
         <div id="endGameButtons">
           <button id="playAgain" onclick="replayQuiz()">Play Again</button>
           <button id="clearHighscore" onclick="clearScore()">
