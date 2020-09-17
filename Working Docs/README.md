@@ -19,7 +19,7 @@ WHEN the game is over
 THEN I can save my initials and score
 
 ## App Screenshot
-<img src="Working Docs\app screenshot.jpg">
+<img src="app screenshot.jpg">
 
 ## Live Site Demo
 https://mnilou.github.io/javascript-quiz/ 
