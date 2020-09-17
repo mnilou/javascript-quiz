@@ -92,9 +92,7 @@ var timerInterval;
 var score;
 var numCorrect = 0;
 
-// var correctAnswer = ;
-
-// This function cycles through the object array containing the quiz questions to generate the questions and answers
+// This conditional function cycles through the array containing the quiz questions to generate the q&a and correct/incorrect answers
 function generateQuizQuestion() {
   gameOverDiv.style.display = "none";
   if (currentQuestionIndex === finalQuestionIndex) {
@@ -114,14 +112,15 @@ function generateQuizQuestion() {
   });
   console.log(currentQuestion);
 }
+  //display in the results div that the this.value is correct
 function questionClick() {
   console.log(this.value);
   if (this.value !== quizQuestions[currentQuestionIndex].correctAnswer) {
     timeLeft -= 10;
-  
-    //display in the results div that the this.value is correct.
+    alert("Incorrect, time deducted!");
   } else {
-    numCorrect++;  
+    numCorrect++;
+    alert("Correct!")
   }
   currentQuestionIndex++;
   if (currentQuestionIndex === quizQuestions.length) {
